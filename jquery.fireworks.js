@@ -2,6 +2,7 @@
 	$.fn.fireworks = function(options = {}) {
     // set the defaults
     options.sound = options.sound || false;
+		options.opacity = options.opacity || 1;
 
     var fireworksField = this,
         particles = [],
@@ -29,7 +30,7 @@
 		canvas.style.position = 'absolute';
 		canvas.style.top = '0px';
 		canvas.style.left = '0px';
-    canvas.style.opacity = 0.4;
+    canvas.style.opacity = options.opacity;
     var context = canvas.getContext('2d');
 
     // The Particles Object
