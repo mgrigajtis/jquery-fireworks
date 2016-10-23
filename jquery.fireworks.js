@@ -3,14 +3,16 @@
     // set the defaults
     options.sound = options.sound || false;
 		options.opacity = options.opacity || 1;
+		options.width = options.width || $(this).width();
+		options.height = options.height || $(this).height();
 
     var fireworksField = this,
         particles = [],
         rockets = [],
         MAX_PARTICLES = 400,
         colorCode = 0,
-        SCREEN_WIDTH = $(fireworksField).width(),
-        SCREEN_HEIGHT = $(fireworksField).width();
+        SCREEN_WIDTH = options.width,
+        SCREEN_HEIGHT = options.height;
 
     // cache the sounds if the plugin has been configured to use soudns
     var sounds = [], audio;
@@ -25,8 +27,10 @@
     // create canvas and get the context
     var canvas = document.createElement('canvas');
     canvas.id = 'fireworksField';
-		canvas.width  = SCREEN_WIDTH;
+		canvas.width = SCREEN_WIDTH;
 		canvas.height = SCREEN_HEIGHT;
+		canvas.style.width  = SCREEN_WIDTH + 'px';
+		canvas.style.height = SCREEN_HEIGHT + 'px';
 		canvas.style.position = 'absolute';
 		canvas.style.top = '0px';
 		canvas.style.left = '0px';
