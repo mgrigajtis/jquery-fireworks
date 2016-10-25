@@ -1,6 +1,6 @@
 {
   "name": "jquery-fireworks",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Creates a field of exploding fireworks on a div.  It does this by overlaying a canvas to the div and launching fireworks and exploding them.",
   "main": "jquery.fireworks.js",
   "scripts": {
