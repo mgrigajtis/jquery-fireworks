@@ -10,7 +10,6 @@
         particles = [],
         rockets = [],
         MAX_PARTICLES = 400,
-        colorCode = 0,
         SCREEN_WIDTH = options.width,
         SCREEN_HEIGHT = options.height;
 
@@ -47,7 +46,7 @@
             x: 0,
             y: 0
         };
-        this.shrink = .97;
+        this.shrink = 0.97;
         this.size = 2;
 
         this.resistance = 1;
@@ -229,7 +228,7 @@
 
         var existingParticles = [];
 
-        for (var i = 0; i < particles.length; i++) {
+        for (i = 0; i < particles.length; i++) {
             particles[i].update();
 
             // render and save particles that can be rendered
@@ -262,7 +261,7 @@
 
     var launch = function() {
         launchFrom(SCREEN_WIDTH / 2);
-    }
+    };
 
     // Append the canvas and start the loops
     $(fireworksField).append(canvas);
