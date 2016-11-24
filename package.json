@@ -11,9 +11,7 @@
     "url": "git+https://github.com/mgrigajtis/jquery-fireworks.git"
   },
   "keywords": [
-    "ecosystem:jquery",
-    "jquery",
-    "fireworks"
+    "ecosystem:jquery"
   ],
   "author": "Matthew Grigajtis",
   "license": "ISC",
