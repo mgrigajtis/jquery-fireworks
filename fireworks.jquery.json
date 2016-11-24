@@ -26,7 +26,7 @@
     "bugs": "https://github.com/mgrigajtis/jquery-fireworks/issues",
     "homepage": "https://github.com/mgrigajtis/jquery-fireworks",
     "docs": "https://github.com/mgrigajtis/jquery-fireworks",
-    "download": "https://github.com/mgrigajtis/jquery-fireworks",
+    "download": "https://github.com/mgrigajtis/jquery-fireworks/archive/master.zip",
     "dependencies": {
         "jquery": ">=2.0"
     }
