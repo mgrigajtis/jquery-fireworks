@@ -1,11 +1,14 @@
 (function ($) {
-	$.fn.fireworks = function(options) {
+  $.fn.fireworks = function(options) {
     // set the defaults
-		options = options || {};
+    options = options || {};
 
-		options.opacity = options.opacity || 1;
-		options.width = options.width || $(this).width();
-		options.height = options.height || $(this).height();
+    options.opacity = options.opacity || 1;
+    options.width = options.width || $(this).width();
+    options.height = options.height || $(this).height();
+
+    options.width = parseInt(options.width, 10);
+    options.height = parseInt(options.height, 10);
 
     var fireworksField = this,
         particles = [],
@@ -13,18 +16,17 @@
         MAX_PARTICLES = 400,
         SCREEN_WIDTH = options.width,
         SCREEN_HEIGHT = options.height;
-    }
 
     // create canvas and get the context
     var canvas = document.createElement('canvas');
     canvas.id = 'fireworksField';
-		canvas.width = SCREEN_WIDTH;
-		canvas.height = SCREEN_HEIGHT;
-		canvas.style.width  = SCREEN_WIDTH + 'px';
-		canvas.style.height = SCREEN_HEIGHT + 'px';
-		canvas.style.position = 'absolute';
-		canvas.style.top = '0px';
-		canvas.style.left = '0px';
+    canvas.width = SCREEN_WIDTH;
+    canvas.height = SCREEN_HEIGHT;
+    canvas.style.width  = SCREEN_WIDTH + 'px';
+    canvas.style.height = SCREEN_HEIGHT + 'px';
+    canvas.style.position = 'absolute';
+    canvas.style.top = '0px';
+    canvas.style.left = '0px';
     canvas.style.opacity = options.opacity;
     var context = canvas.getContext('2d');
 
@@ -169,11 +171,18 @@
 
     var loop = function() {
         // update screen size
-        if (SCREEN_WIDTH != window.innerWidth) {
-            canvas.width = SCREEN_WIDTH = window.innerWidth;
+        var containerWidth = $(fireworksField).innerWidth();
+        var containerHeight = $(fireworksField).innerHeight();
+        var newWidth = options.width || containerWidth;
+        var newHeight = options.height || containerHeight;
+
+        if (SCREEN_WIDTH != newWidth) {
+            canvas.width = SCREEN_WIDTH = newWidth;
+            canvas.style.width = newWidth + 'px';
         }
-        if (SCREEN_HEIGHT != window.innerHeight) {
-            canvas.height = SCREEN_HEIGHT = window.innerHeight;
+        if (SCREEN_HEIGHT != newHeight) {
+            canvas.height = SCREEN_HEIGHT = newHeight;
+            canvas.style.height = newHeight + 'px';
         }
 
         // clear canvas
@@ -246,6 +255,9 @@
     };
 
     // Append the canvas and start the loops
+    if ($(fireworksField).css('position') === 'static') {
+        $(fireworksField).css('position', 'relative');
+    }
     $(fireworksField).append(canvas);
     setInterval(launch, 800);
     setInterval(loop, 1000 / 50);
