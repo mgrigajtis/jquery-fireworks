@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="fireworksDemo">
+  <head>
+    <meta charset="UTF-8">
+    <title>Fireworks AngularJS Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        margin: 0;
+        font-family: "Trebuchet MS", sans-serif;
+        background: #0d0f19;
+        color: #f5f5f5;
+      }
+      .stage {
+        position: relative;
+        height: 70vh;
+        margin: 32px;
+        border-radius: 18px;
+        overflow: hidden;
+        background: linear-gradient(160deg, #101b2a, #1b2238 45%, #11111a);
+      }
+      .overlay {
+        position: relative;
+        z-index: 1;
+        padding: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stage" fireworks>
+      <div class="overlay">
+        <h1>AngularJS Fireworks</h1>
+        <p>Directive wrapper around the core module.</p>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+    <script src="../fireworks.core.js"></script>
+    <script>
+      angular.module('fireworksDemo', [])
+        .directive('fireworks', function () {
+          return {
+            restrict: 'A',
+            link: function (scope, element) {
+              var instance = Fireworks.createFireworks(element[0], { opacity: 0.85 });
+              scope.$on('$destroy', function () {
+                if (instance && instance.destroy) {
+                  instance.destroy();
+                }
+              });
+            }
+          };
+        });
+    </script>
+  </body>
+</html>

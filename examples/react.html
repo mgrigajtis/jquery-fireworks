@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Fireworks React Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        margin: 0;
+        font-family: "Trebuchet MS", sans-serif;
+        background: #0a0a14;
+        color: #f8f8f8;
+      }
+      .stage {
+        position: relative;
+        height: 70vh;
+        margin: 32px;
+        border-radius: 18px;
+        overflow: hidden;
+        background: linear-gradient(150deg, #0b1d2b, #1a2135 45%, #15121c);
+      }
+      .overlay {
+        position: relative;
+        z-index: 1;
+        padding: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="../fireworks.core.js"></script>
+    <script>
+      const e = React.createElement;
+
+      function FireworksDemo() {
+        const ref = React.useRef(null);
+
+        React.useEffect(() => {
+          if (!ref.current || !window.Fireworks) {
+            return;
+          }
+          const instance = window.Fireworks.createFireworks(ref.current, { opacity: 0.85 });
+          return () => {
+            if (instance && instance.destroy) {
+              instance.destroy();
+            }
+          };
+        }, []);
+
+        return e('div', { className: 'stage', ref }, [
+          e('div', { className: 'overlay', key: 'overlay' }, [
+            e('h1', { key: 'title' }, 'React Fireworks'),
+            e('p', { key: 'copy' }, 'The core module runs inside a React component.')
+          ])
+        ]);
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(e(FireworksDemo));
+    </script>
+  </body>
+</html>

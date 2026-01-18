@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Fireworks VanillaJS Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        margin: 0;
+        font-family: "Trebuchet MS", sans-serif;
+        background: #0b1220;
+        color: #f2f2f2;
+      }
+      .stage {
+        position: relative;
+        height: 70vh;
+        margin: 32px;
+        border-radius: 20px;
+        overflow: hidden;
+        background: radial-gradient(circle at 20% 20%, rgba(90, 150, 255, 0.3), transparent 50%),
+          linear-gradient(140deg, #0d1b2a, #101b2f 40%, #121220);
+      }
+      .stage-content {
+        position: relative;
+        z-index: 1;
+        padding: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stage" id="vanilla-fireworks">
+      <div class="stage-content">
+        <h1>VanillaJS Fireworks</h1>
+        <p>Uses the core module without jQuery.</p>
+      </div>
+    </div>
+
+    <script src="../fireworks.core.js"></script>
+    <script>
+      Fireworks.createFireworks(document.getElementById('vanilla-fireworks'), {
+        opacity: 0.85
+      });
+    </script>
+  </body>
+</html>
